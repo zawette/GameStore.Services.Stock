@@ -21,7 +21,7 @@ namespace Domain.Entities
             item.AddEvent(new ItemCreated(item));
             return item;
         }
-        public static Item push(Item item, int amount)
+        public static Item Push(Item item, int amount)
         {
 
             item.Amount += amount;
@@ -29,7 +29,7 @@ namespace Domain.Entities
             return item;
         }
 
-        public static Item pop(Item item, int amount)
+        public static Item Pop(Item item, int amount)
         {
             if (amount > item.Amount)
             {
