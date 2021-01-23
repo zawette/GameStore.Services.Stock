@@ -349,3 +349,4 @@ healthchecksdb
 .history/
 .vscode/tasks.json
 .vscode/launch.json
+GameStore.Services.Stock.Api/Properties/launchSettings.json
