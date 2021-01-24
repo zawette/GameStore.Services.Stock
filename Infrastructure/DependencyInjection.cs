@@ -2,6 +2,7 @@ using Application.Services;
 using Domain.Repositories;
 using Infrastructure.Exceptions;
 using Infrastructure.Messaging;
+using Infrastructure.Messaging.Consumers;
 using Infrastructure.Mongo;
 using Infrastructure.Mongo.Repositories;
 using Infrastructure.Services;
@@ -41,6 +42,16 @@ namespace Infrastructure
                                        h.Username(rMqSettings.username);
                                        h.Password(rMqSettings.password);
                                    });
+                    cfg.ReceiveEndpoint("items-service.ItemAdded", ep =>
+                    {
+                        ep.PrefetchCount = 15;
+                        ep.ConfigureConsumer<ItemAddedConsumer>(provider);
+                    });
+                    cfg.ReceiveEndpoint("items-service.ItemRemoved", ep =>
+                    {
+                        ep.PrefetchCount = 15;
+                        ep.ConfigureConsumer<ItemRemovedConsumer>(provider);
+                    });
                 }));
             });
             services.AddMassTransitHostedService();
