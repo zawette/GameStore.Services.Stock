@@ -34,6 +34,8 @@ namespace Infrastructure
             services.AddSingleton<RabbitMqSettings>(rMqSettings);
             services.AddMassTransit(x =>
             {
+                x.AddConsumer<ItemAddedConsumer>();
+                x.AddConsumer<ItemRemovedConsumer>();
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
                     cfg.UseHealthCheck(provider);
