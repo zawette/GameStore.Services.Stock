@@ -2,11 +2,11 @@ using System;
 
 namespace Application.Events
 {
-    public class ItemRemoved : IEvent
+    public class StockItemAdded : IEvent
     {
         public Guid Id { get; set; }
 
-        public ItemRemoved(Guid id)
+        public StockItemAdded(Guid id)
         {
             Id = id;
         }

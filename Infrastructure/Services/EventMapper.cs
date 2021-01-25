@@ -14,11 +14,11 @@ namespace Infrastructure.Services
         public IEvent Map(IDomainEvent @event)
             => @event switch
             {
-                ItemCreated e => new ItemAdded(e.item.Id),
-                ItemDeleted e => new ItemRemoved(e.item.Id),
-                ItemStockDown e => new Application.Events.ItemStockDown(e.item.Id,e.item.Amount), 
-                ItemStockUp e => new Application.Events.ItemStockUp(e.item.Id,e.item.Amount), 
-                ItemStockEmpty e => new Application.Events.ItemStockEmpty(e.item.Id), 
+                ItemCreated e => new StockItemAdded(e.item.Id),
+                ItemDeleted e => new StockItemRemoved(e.item.Id),
+                ItemStockDown e => new Application.Events.StockItemStockDown(e.item.Id,e.item.Amount), 
+                ItemStockUp e => new Application.Events.StockItemStockUp(e.item.Id,e.item.Amount), 
+                ItemStockEmpty e => new Application.Events.StockItemStockEmpty(e.item.Id), 
                 _ => null
             };
 

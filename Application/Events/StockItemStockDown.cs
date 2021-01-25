@@ -2,9 +2,9 @@ using System;
 
 namespace Application.Events
 {
-    public class ItemStockDown : IEvent
+    public class StockItemStockDown : IEvent
     {
-        public ItemStockDown(Guid id, int amount)
+        public StockItemStockDown(Guid id, int amount)
         {
             Id = id;
             Amount = amount;

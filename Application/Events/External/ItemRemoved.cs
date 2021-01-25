@@ -1,7 +1,7 @@
 using System;
 using MediatR;
 
-namespace Application.Events.External
+namespace Application.Events
 {
     public class ItemRemoved : IEvent, IRequest
     {

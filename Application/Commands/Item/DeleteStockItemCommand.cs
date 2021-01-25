@@ -3,9 +3,8 @@ using MediatR;
 
 namespace Application.Commands.Item
 {
-    public class ItemStockUpCommand : IRequest
+    public class DeleteStockItemCommand : IRequest
     {
         public Guid Id { get; set; }
-        public int Amount { get; set; }
     }
 }

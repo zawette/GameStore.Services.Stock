@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Application.Events;
 using Application.Events.External;
 using MassTransit;
 using MediatR;

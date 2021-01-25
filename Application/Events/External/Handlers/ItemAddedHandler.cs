@@ -5,18 +5,18 @@ using MediatR;
 
 namespace Application.Events.External.Handlers
 {
-    public class ItemRemovedHandler : IRequestHandler<Application.Events.External.ItemRemoved>
+    public class ItemAddedHandler : IRequestHandler<ItemAdded>
     {
         private readonly IMediator _mediator;
 
-        public ItemRemovedHandler(IMediator mediator)
+        public ItemAddedHandler(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        public async Task<Unit> Handle(ItemRemoved request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(ItemAdded request, CancellationToken cancellationToken)
         {
-            await _mediator.Send(new DeleteItemCommand() { Id = request.Id });
+            await _mediator.Send(new CreateStockItemCommand() { Id = request.Id, Amount = 0 });
             return Unit.Value;
         }
     }

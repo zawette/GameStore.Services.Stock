@@ -2,11 +2,11 @@ using System;
 
 namespace Application.Events
 {
-    public class ItemStockEmpty : IEvent
+    public class StockItemStockEmpty : IEvent
     {
         public Guid Id { get; set; }
 
-        public ItemStockEmpty(Guid id)
+        public StockItemStockEmpty(Guid id)
         {
             Id = id;
         }

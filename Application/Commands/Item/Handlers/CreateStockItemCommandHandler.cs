@@ -7,23 +7,22 @@ using MediatR;
 
 namespace Application.Commands.Item.Handlers
 {
-    public class DeleteItemCommandHandler : IRequestHandler<DeleteItemCommand>
+    public class CreateStockItemCommandHandler : IRequestHandler<CreateStockItemCommand>
     {
         private readonly IItemRepository _repository;
         private readonly IEventProcessor _eventProcessor;
 
-        public DeleteItemCommandHandler(IItemRepository repository, IEventProcessor eventProcessor)
+        public CreateStockItemCommandHandler(IItemRepository repository, IEventProcessor eventProcessor)
         {
             _repository = repository;
             _eventProcessor = eventProcessor;
         }
 
-        public async Task<Unit> Handle(DeleteItemCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateStockItemCommand request, CancellationToken cancellationToken)
         {
-            var item = await _repository.GetAsync(request.Id);
-            if (item is null) { throw new ItemNotFoundException(request.Id); }
-            item.Delete(item);
-            await _repository.DeleteAsync(item.Id);
+            if (await _repository.ExistsAsync(request.Id)) { throw new ItemAlreadyExistsException(request.Id); }
+            var item = Domain.Entities.Item.Create(request.Id, request.Amount);
+            await _repository.AddAsync(item);
             await _eventProcessor.ProcessAsync(item.Events);
             return Unit.Value;
         }

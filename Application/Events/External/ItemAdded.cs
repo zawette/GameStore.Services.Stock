@@ -1,7 +1,7 @@
-using System;
 using MediatR;
+using System;
 
-namespace Application.Events.External
+namespace Application.Events
 {
     public class ItemAdded : IEvent, IRequest
     {
