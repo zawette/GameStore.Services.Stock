@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
-using RabbitMQ.Client;
 using System;
 
 namespace Infrastructure
@@ -47,18 +46,14 @@ namespace Infrastructure
                                    });
                     cfg.ReceiveEndpoint("items-service.ItemAdded", ep =>
                     {
-                        ep.ConfigureConsumeTopology = false;
-                        ep.Bind("ItemAdded");
                         ep.PrefetchCount = 15;
                         ep.Consumer<ItemAddedConsumer>(provider);
                     });
-                    // cfg.ReceiveEndpoint("items-service.ItemRemoved", ep =>
-                    // {
-                    //     ep.ConfigureConsumeTopology=false;
-                    //     ep.Bind("items-service.ItemRemoved");
-                    //     ep.PrefetchCount = 15;
-                    //     ep.ConfigureConsumer<ItemRemovedConsumer>(provider);
-                    // });
+                    cfg.ReceiveEndpoint("items-service.ItemRemoved", ep =>
+                    {
+                        ep.PrefetchCount = 15;
+                        ep.ConfigureConsumer<ItemRemovedConsumer>(provider);
+                    });
                 }));
             });
             services.AddMassTransitHostedService();
