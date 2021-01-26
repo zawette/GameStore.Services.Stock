@@ -62,6 +62,7 @@ namespace Infrastructure
             services.AddTransient<IEventProcessor, EventProcessor>();
             return services;
         }
+
         public static IServiceCollection AddErrorHandling(this IServiceCollection services)
             => services.AddSingleton<IExceptionMapper, ExceptionMapper>()
                        .AddTransient<ErrorHandlingMiddleware>();
@@ -74,7 +75,6 @@ namespace Infrastructure
             .AddMongo()
             .AddMessaging(config)
             .AddErrorHandling();
-
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
             => app.UseErrorHandling();

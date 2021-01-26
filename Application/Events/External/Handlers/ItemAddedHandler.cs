@@ -1,7 +1,7 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Application.Commands.Item;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Application.Events.External.Handlers
 {

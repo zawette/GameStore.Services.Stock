@@ -1,7 +1,7 @@
-using System.Threading.Tasks;
 using Application.Events;
 using MassTransit;
 using MediatR;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Messaging.Consumers
 {
