@@ -21,9 +21,9 @@ namespace Domain.Entities
             item.AddEvent(new ItemCreated(item));
             return item;
         }
+
         public static Item Push(Item item, int amount)
         {
-
             item.Amount += amount;
             item.AddEvent(new ItemStockUp(item));
             return item;
@@ -46,6 +46,7 @@ namespace Domain.Entities
                 return item;
             }
         }
+
         public void Delete(Item item)
         {
             item.AddEvent(new ItemDeleted(item));

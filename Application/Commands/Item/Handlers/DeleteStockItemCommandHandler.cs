@@ -1,9 +1,9 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Application.Exceptions;
 using Application.Services;
 using Domain.Repositories;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Application.Commands.Item.Handlers
 {

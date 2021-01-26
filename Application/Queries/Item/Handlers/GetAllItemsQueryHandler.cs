@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+using Application.DTO;
 using Domain.Repositories;
 using MediatR;
+using System.Collections.Generic;
 using System.Linq;
-using Application.DTO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Application.Queries.Item.Handlers
 {

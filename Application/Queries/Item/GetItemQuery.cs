@@ -1,6 +1,6 @@
-using System;
 using Application.DTO;
 using MediatR;
+using System;
 
 namespace Application.Queries.Item
 {

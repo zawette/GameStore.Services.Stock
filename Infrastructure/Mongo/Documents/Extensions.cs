@@ -1,4 +1,3 @@
-
 using Domain.Entities;
 
 namespace Infrastructure.Mongo.Documents

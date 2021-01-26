@@ -1,4 +1,3 @@
-using Domain.Exceptions;
 using System;
 
 namespace Domain.Exceptions
