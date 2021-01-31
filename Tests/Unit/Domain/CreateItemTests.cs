@@ -5,7 +5,7 @@ using Shouldly;
 using System.Linq;
 using Domain.Events;
 
-namespace Tests.Unit
+namespace Tests.Unit.Domain
 {
     public class CreateItemTests
     {
