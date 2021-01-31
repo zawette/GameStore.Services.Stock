@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System;
 using Xunit;
 using Domain.Entities;
@@ -12,19 +11,19 @@ namespace Tests.Unit
     {
         [Fact]
         public void given_valid_id_item_should_be_created()
-        {   
+        {
             //Arange
-            var id= new Guid();
+            var id = Guid.NewGuid();
             var amount = 1;
-            
+
             //Act
-            var item = Item.Create(id,amount);
-            
+            var item = Item.Create(id, amount);
+
             //Assert
-            item.ShouldNotBeNull(); 
+            item.ShouldNotBeNull();
             item.Id.ShouldBe(id);
             item.Events.Count.ShouldBe(1);
-            
+
             var @event = item.Events.Single();
             @event.ShouldBeOfType<ItemCreated>();
         }
