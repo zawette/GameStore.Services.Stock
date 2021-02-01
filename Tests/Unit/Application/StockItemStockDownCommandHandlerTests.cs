@@ -5,6 +5,7 @@ using Application.Commands.Item;
 using Application.Commands.Item.Handlers;
 using Application.Exceptions;
 using Application.Services;
+using Domain.Entities;
 using Domain.Repositories;
 using NSubstitute;
 using Shouldly;
@@ -23,7 +24,17 @@ namespace Tests.Unit.Application
             exception.ShouldBeOfType<ItemNotFoundException>();
         }
         [Fact]
-        public async Task given_valid_itemId_and_amount_should_succeed(){
+        public async Task given_valid_itemId_and_amount_should_succeed()
+        {
+            var id = Guid.NewGuid();
+            var amount = 5;
+            var amountToReduce = 1;
+            var command = new StockItemStockDownCommand() { Id = id, Amount = amountToReduce };
+            var item = Item.Create(id, amount);
+            _repository.GetAsync(command.Id).Returns(item);
+            await _handler.Handle(command, new CancellationToken());
+            await _repository.Received().UpdateAsync(item);
+            await _eventProcessor.Received().ProcessAsync(item.Events);
 
         }
 
